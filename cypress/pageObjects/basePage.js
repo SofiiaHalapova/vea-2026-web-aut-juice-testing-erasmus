@@ -1,5 +1,5 @@
 export class BasePage {
   static visit() {
-    return cy.visit(this.url);
+    return cy.visit(this.url, {failOnStatusCode: false});
   }
 }

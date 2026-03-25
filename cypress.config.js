@@ -10,6 +10,8 @@ module.exports = defineConfig({
     viewportWidth: 1440,
     viewportHeight: 900,
     defaultCommandTimeout: 5000,
-    baseUrl: "http://127.0.0.1:3000",
+    // baseUrl: "https://juice-shop.herokuapp.com",
+    baseUrl: "http://localhost:3000",
   },
 });
+
