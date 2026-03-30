@@ -4,6 +4,7 @@ import { LoginPage } from '../pageObjects/loginPage';
 import { RegistrationPage } from '../pageObjects/registrationPage';
 import { OrderPage } from '../pageObjects/orderPage';
 import { AddressPage } from '../pageObjects/addressPage';
+import { PaymentMethodsPage } from '../pageObjects/paymentMethodsPage';
 
 
 describe('Juice-shop scenarios', () => {
@@ -246,13 +247,26 @@ describe('Juice-shop scenarios', () => {
       // Click on My payment options
       AccountPage.paymentOptionsButton.click();
       // Create page object - SavedPaymentMethodsPage
+      const savedPaymentMethodsPage = {
+        name: 'Sofiia',
+        cardNumber: '1111111111111111',
+        expiryMonth: '7',
+        expiryYear: '2090'
+      };
       // Click Add new card
+      PaymentMethodsPage.addNewCardButton.click();
       // Fill in Name
+      PaymentMethodsPage.nameField.type(savedPaymentMethodsPage.name);
       // Fill in Card Number
+      PaymentMethodsPage.cardNumberField.type(savedPaymentMethodsPage.cardNumber);
       // Set expiry month to 7
+      PaymentMethodsPage.expiryMonthDropdown.select(savedPaymentMethodsPage.expiryMonth);
       // Set expiry year to 2090
+      PaymentMethodsPage.expiryYearDropdown.select(savedPaymentMethodsPage.expiryYear);
       // Click Submit button
+      PaymentMethodsPage.submitButton.click();
       // Validate that the card shows up in the list
+      PaymentMethodsPage.paymentList.should('contain.text', savedPaymentMethodsPage.name);
     });
   });
 });

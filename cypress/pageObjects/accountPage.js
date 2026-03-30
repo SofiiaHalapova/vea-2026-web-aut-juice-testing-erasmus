@@ -14,6 +14,6 @@ export class AccountPage extends BasePage {
   }
 
   static get paymentOptionsButton() {
-    return cy.contains('button', 'My payment options');
+    return cy.contains('button', 'My Payment Options');
   }
 }
