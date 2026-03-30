@@ -10,19 +10,19 @@ export class AddressPage extends BasePage {
   }
   
   static get countryField() {
-    return cy.get('#mat-input-2');
+    return cy.contains('mat-form-field', 'Country').find('input');
   }
 
   static get nameField() {
-    return cy.get('#mat-input-3');
+    return cy.contains('mat-form-field', 'Name').find('input');
   }
 
   static get phoneField() {
-    return cy.get('#mat-input-4');
+    return cy.contains('mat-form-field', 'Mobile Number').find('input');
   }
 
   static get zipField() {
-    return cy.get('#mat-input-5');
+    return cy.contains('mat-form-field', 'ZIP Code').find('input');
   }
 
   static get addressField() {
@@ -30,11 +30,11 @@ export class AddressPage extends BasePage {
   }
 
   static get cityField() {
-    return cy.get('#mat-input-7');
+    return cy.contains('mat-form-field', 'City').find('input');
   }
 
   static get stateField() {
-    return cy.get('#mat-input-8');
+    return cy.contains('mat-form-field', 'State').find('input');
   }
 
   static get submitButton() {
