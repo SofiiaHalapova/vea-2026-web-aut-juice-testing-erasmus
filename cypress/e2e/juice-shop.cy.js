@@ -2,8 +2,8 @@ import { AccountPage } from '../pageObjects/accountPage';
 import { HomePage } from '../pageObjects/HomePage';
 import { LoginPage } from '../pageObjects/loginPage';
 import { RegistrationPage } from '../pageObjects/registrationPage';
-// import { AccountPage } from '../pageObjects/accountPage';
 import { OrderPage } from '../pageObjects/orderPage';
+import { AddressPage } from '../pageObjects/addressPage';
 
 
 describe('Juice-shop scenarios', () => {
@@ -174,7 +174,7 @@ describe('Juice-shop scenarios', () => {
     });
 
     // Create scenario - Buy Girlie T-shirt
-    it.only('Buy Girlie T-shirt', () => {
+    it('Buy Girlie T-shirt', () => {
       // Click on search icon
       HomePage.searchIcon.click();
       // Search for Girlie
@@ -204,27 +204,47 @@ describe('Juice-shop scenarios', () => {
     });
 
     // Create scenario - Add address
-    // it.only('Add address', () => { 
-    //   // Click on Account
-    //   HomePage.accountButton.click();
-    //   // Click on Orders & Payment
-    //   AccountPage.ordersAndPaymentButton.click();
-    //   // Click on My saved addresses
-    //   AccountPage.savedAddressesButton.click();
-    //   // Create page object - SavedAddressesPage
-    //   // Click on Add New Address
-    //   // Create page object - CreateAddressPage
-    //   // Fill in the necessary information
-    //   // Click Submit button
-    //   // Validate that previously added address is visible
-    // });
+    it('Add address', () => {
+      // Click on Account
+      HomePage.accountButton.click();
+      // Click on Orders & Payment
+      AccountPage.ordersAndPaymentButton.click();
+      // Click on My saved addresses
+      AccountPage.savedAddressesButton.click();
+      // Click on Add New Address
+      AddressPage.addNewAddressButton.click();
+      // Fill in the necessary information
+      const address = {
+        country: 'Ukraine',
+        name: 'Sofiia',
+        phone: '123456789',
+        zip: 'test',
+        address: 'test street',
+        city: 'Kyiv',
+        state: 'Kyiv'
+      };
+      AddressPage.countryField.type(address.country);
+      AddressPage.nameField.type(address.name);
+      AddressPage.phoneField.type(address.phone);
+      AddressPage.zipField.type(address.zip);
+      AddressPage.addressField.type(address.address);
+      AddressPage.cityField.type(address.city);
+      AddressPage.stateField.type(address.state);
+      // Click Submit button
+      AddressPage.submitButton.click();
+      // Validate that previously added address is visible
+      AddressPage.addressList.should('contain.text', address.name);
+    });
 
   
     // Create scenario - Add payment option
-    // it('Add payment option', () => {
+    it.only('Add payment option', () => {
       // Click on Account
+      HomePage.accountButton.click();
       // Click on Orders & Payment
+      AccountPage.ordersAndPaymentButton.click();
       // Click on My payment options
+      AccountPage.paymentOptionsButton.click();
       // Create page object - SavedPaymentMethodsPage
       // Click Add new card
       // Fill in Name
@@ -233,6 +253,6 @@ describe('Juice-shop scenarios', () => {
       // Set expiry year to 2090
       // Click Submit button
       // Validate that the card shows up in the list
-    // });
+    });
   });
 });
